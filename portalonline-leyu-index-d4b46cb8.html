@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>乐鱼 · 产品说明页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f7f3ed;
+            font-family: 'Georgia', 'Noto Serif SC', 'Times New Roman', serif;
+            color: #2b2a27;
+            line-height: 1.75;
+            padding: 2rem 1.2rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 840px;
+            width: 100%;
+            background: #faf8f4;
+            border-radius: 28px;
+            padding: 2.6rem 2.2rem;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.03), 0 1px 3px rgba(0,0,0,0.02);
+            transition: padding 0.2s;
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.4rem;
+            color: #1f1e1b;
+            border-left: 4px solid #b79b7e;
+            padding-left: 1.2rem;
+        }
+
+        .subhead {
+            font-size: 1rem;
+            color: #6c655c;
+            margin-bottom: 2rem;
+            font-style: italic;
+            padding-left: 1.6rem;
+            border-bottom: 1px solid #e2d9ce;
+            padding-bottom: 0.75rem;
+        }
+
+        .hero-summary {
+            background: #ede7de;
+            padding: 1.6rem 1.8rem;
+            border-radius: 18px;
+            margin-bottom: 2.4rem;
+            font-size: 1.05rem;
+            box-shadow: inset 0 1px 4px rgba(0,0,0,0.02);
+        }
+
+        .hero-summary strong {
+            color: #7f5c3c;
+            font-weight: 600;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.6rem;
+            margin: 2.2rem 0 1.8rem;
+        }
+
+        .feature-card {
+            background: #ffffffdd;
+            backdrop-filter: blur(1px);
+            border: 1px solid #e4dbd0;
+            border-radius: 20px;
+            padding: 1.4rem 1.2rem 1.2rem;
+            transition: box-shadow 0.15s;
+        }
+
+        .feature-card h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #4f3f2f;
+            letter-spacing: 0.3px;
+            border-bottom: 1px dashed #d6cbbc;
+            padding-bottom: 0.3rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .feature-card p {
+            font-size: 0.95rem;
+            color: #3d3832;
+        }
+
+        .insight-box {
+            background: #f1ece4;
+            border-left: 6px solid #b79b7e;
+            padding: 1.2rem 1.6rem;
+            margin: 2rem 0 1.8rem;
+            border-radius: 0 18px 18px 0;
+            font-style: normal;
+        }
+
+        .insight-box p {
+            margin-bottom: 0.4rem;
+        }
+
+        .insight-box .label {
+            font-weight: 600;
+            color: #5e4b38;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .use-scenarios {
+            margin: 2rem 0 1.4rem;
+        }
+
+        .use-scenarios h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: #2f2a24;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #ddd5ca;
+            padding-bottom: 0.3rem;
+        }
+
+        .scenario-item {
+            display: flex;
+            gap: 0.8rem;
+            margin-bottom: 1.1rem;
+            align-items: flex-start;
+        }
+
+        .scenario-item .marker {
+            font-size: 1.2rem;
+            line-height: 1.4;
+            color: #9b866e;
+            min-width: 1.8rem;
+        }
+
+        .scenario-item p {
+            font-size: 0.98rem;
+            color: #3a3530;
+        }
+
+        .faq-short {
+            background: #f9f6f1;
+            border-radius: 20px;
+            padding: 1.4rem 1.6rem;
+            margin: 2rem 0 1.6rem;
+            border: 1px solid #e2d8cc;
+        }
+
+        .faq-short details {
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-short summary {
+            font-weight: 500;
+            cursor: pointer;
+            color: #3d352c;
+            padding: 0.3rem 0;
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .faq-short summary::before {
+            content: "▸";
+            margin-right: 0.6rem;
+            color: #b79b7e;
+            transition: transform 0.15s;
+        }
+
+        .faq-short details[open] summary::before {
+            transform: rotate(90deg);
+        }
+
+        .faq-short .answer {
+            padding-left: 1.6rem;
+            color: #4a433c;
+            font-size: 0.95rem;
+            margin-top: 0.2rem;
+        }
+
+        .link-sentence {
+            background: #ede7de;
+            border-radius: 40px;
+            padding: 0.8rem 1.6rem;
+            display: inline-block;
+            margin: 1rem 0 0.2rem;
+            font-size: 0.98rem;
+        }
+
+        .link-sentence a {
+            color: #5e3f26;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dotted #b79b7e;
+            transition: border 0.1s;
+        }
+
+        .link-sentence a:hover {
+            border-bottom: 2px solid #7f5c3c;
+        }
+
+        .footnote {
+            margin-top: 2.6rem;
+            font-size: 0.85rem;
+            color: #7e756b;
+            border-top: 1px solid #e0d7cb;
+            padding-top: 1.2rem;
+            text-align: left;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem 0.6rem;
+            }
+            .container {
+                padding: 1.6rem 1rem;
+                border-radius: 20px;
+            }
+            h1 {
+                font-size: 1.9rem;
+                padding-left: 0.8rem;
+            }
+            .feature-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+            .subhead {
+                font-size: 0.9rem;
+                padding-left: 1rem;
+            }
+            .hero-summary {
+                padding: 1.2rem;
+            }
+            .insight-box {
+                padding: 1rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>乐鱼</h1>
+    <div class="subhead">产品说明 · 用途速览</div>
+
+    <div class="hero-summary">
+        <p><strong>乐鱼</strong> 是一个面向线上服务平台的门户，聚合了账户管理、资源导航与基础操作入口。用户通过该站点可以快速了解服务结构、获取支持信息，并完成常用功能的跳转。页面设计以信息清晰为首要目标，减少无关干扰，让使用者能直接定位到自身所需模块。</p>
+    </div>
+
+    <div class="feature-grid">
+        <div class="feature-card">
+            <h3>功能入口集中</h3>
+            <p>将登录、注册、帮助中心、公告等高频操作整合在同一界面，降低记忆负担，尤其适合初次接触平台的用户建立整体认知。</p>
+        </div>
+        <div class="feature-card">
+            <h3>信息层级分明</h3>
+            <p>采用分区式布局，重点内容以卡片和列表呈现，视觉动线自然，用户可依照自身需求逐层浏览，而非被动接受推送。</p>
+        </div>
+        <div class="feature-card">
+            <h3>轻量快速响应</h3>
+            <p>页面结构精简，无需额外加载繁重资源，无论在桌面端还是移动端均能保持稳定反馈，适合网络环境一般的场景。</p>
+        </div>
+        <div class="feature-card">
+            <h3>意图明确</h3>
+            <p>所有交互元素均围绕“识别用途—执行操作”这一链条设计，不堆砌无关内容，帮助使用者在短时间内确认站点价值。</p>
+        </div>
+    </div>
+
+    <div class="insight-box">
+        <span class="label">使用建议</span>
+        <p>若您希望快速判断该平台是否契合自身需求，建议先浏览首页导航区与公告摘要，通常这部分内容会直接说明服务范围与近期变动。避免被过多外围信息干扰，聚焦于“我需要什么”以及“这里是否提供”这两个问题即可。</p>
+        <p style="margin-top: 0.6rem;">对已注册用户，将常用功能入口加入浏览器书签能进一步缩短操作路径。</p>
+    </div>
+
+    <div class="use-scenarios">
+        <h2>典型使用场景</h2>
+        <div class="scenario-item">
+            <span class="marker">①</span>
+            <p><strong>新用户评估</strong> — 通过首页的模块划分与服务简介，快速建立对平台服务范围的初步印象，再决定是否进一步注册。</p>
+        </div>
+        <div class="scenario-item">
+            <span class="marker">②</span>
+            <p><strong>日常操作跳板</strong> — 将门户页面作为统一起点，避免记忆多个子页面地址，尤其适合需要频繁切换功能的用户。</p>
+        </div>
+        <div class="scenario-item">
+            <span class="marker">③</span>
+            <p><strong>信息核对与支持</strong> — 遇到账户或流程疑问时，优先通过门户内置的帮助、公告模块寻找答案，减少额外搜索成本。</p>
+        </div>
+    </div>
+
+    <div class="faq-short">
+        <details>
+            <summary>乐鱼 门户主要面向哪些用户？</summary>
+            <div class="answer">面向所有对平台功能感兴趣或已有账户的人员，无论你是初次了解还是长期使用者，页面内容均保持中性且易读。</div>
+        </details>
+        <details>
+            <summary>页面上是否会显示个人敏感信息？</summary>
+            <div class="answer">不会。该门户仅提供导航、介绍与入口链接，不展示任何用户个人数据或敏感操作界面。</div>
+        </details>
+        <details>
+            <summary>如何确认门户内容是最新版本？</summary>
+            <div class="answer">建议留意页面底部的更新标记或公告区域，若仍有疑问，可直接通过站点内提供的联系方式核实。</div>
+        </details>
+    </div>
+
+    <div class="link-sentence">
+        ℹ️ 若需直接访问该平台，可前往 <a href="https://portalonline-leyu.com">乐鱼</a> 查看完整服务界面。
+    </div>
+
+    <div class="footnote">
+        本页面为产品说明性质，旨在提供客观的功能概述与使用参考，不构成任何形式的服务承诺或诱导行为。内容基于公开信息整理，具体服务以实际站点为准。
+    </div>
+</div>
+</body>
+</html>
