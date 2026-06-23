@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>乐鱼 · 日常查询与延伸阅读</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #f7fafc;
+            color: #1a2e3f;
+            line-height: 1.6;
+            padding: 0 1rem 2.5rem;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+        }
+
+        /* ---- hero ---- */
+        .hero {
+            padding: 3rem 0 2.5rem;
+            text-align: center;
+            border-bottom: 1px solid #cfe2eb;
+        }
+
+        .hero h1 {
+            font-size: 2.1rem;
+            font-weight: 350;
+            letter-spacing: 0.02em;
+            color: #1b4b5c;
+        }
+
+        .hero h1 span {
+            font-weight: 600;
+            color: #0f7b8c;
+        }
+
+        .hero p {
+            margin-top: 1rem;
+            font-size: 1.1rem;
+            color: #2c5a6b;
+            max-width: 680px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero .tagline {
+            display: inline-block;
+            margin-top: 1.5rem;
+            background: #d4e9f0;
+            padding: 0.4rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            color: #0b5d70;
+        }
+
+        /* ---- 卡片网格（优势区） ---- */
+        .grid-section {
+            margin: 2.8rem 0;
+        }
+
+        .grid-section h2 {
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: #1b4b5c;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #1b9aad;
+            padding-left: 0.8rem;
+        }
+
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.6rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 1.6rem 1.2rem;
+            box-shadow: 0 4px 12px rgba(0, 40, 50, 0.04);
+            transition: box-shadow 0.2s, transform 0.1s;
+            border: 1px solid #dcebf0;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 20px rgba(21, 114, 125, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .card .emoji-icon {
+            font-size: 1.9rem;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin: 0.4rem 0 0.35rem;
+            color: #144f5e;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: #2e5f6e;
+        }
+
+        /* ---- 说明区（延伸与对照） ---- */
+        .explain-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            background: #e9f2f6;
+            border-radius: 28px;
+            padding: 2rem 1.8rem;
+            margin: 2.5rem 0;
+        }
+
+        .explain-block {
+            flex: 1 1 220px;
+        }
+
+        .explain-block h3 {
+            font-size: 1.25rem;
+            font-weight: 450;
+            color: #0b5a6b;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .explain-block p {
+            color: #1f4c5b;
+            font-size: 0.98rem;
+        }
+
+        .explain-block ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 0.6rem;
+        }
+
+        .explain-block ul li {
+            position: relative;
+            padding-left: 1.2rem;
+            margin-bottom: 0.3rem;
+            font-size: 0.95rem;
+            color: #1a4d5c;
+        }
+
+        .explain-block ul li::before {
+            content: "•";
+            color: #1b9aad;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* ---- FAQ 摘要 ---- */
+        .faq-summary {
+            background: white;
+            border-radius: 28px;
+            padding: 1.8rem 1.8rem 2rem;
+            box-shadow: 0 4px 8px rgba(0, 40, 50, 0.02);
+            border: 1px solid #d2e3ea;
+            margin: 2.8rem 0;
+        }
+
+        .faq-summary h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: #174f5f;
+            border-bottom: 2px solid #b3d6e2;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .faq-item {
+            margin-bottom: 1.2rem;
+        }
+
+        .faq-item strong {
+            display: block;
+            font-weight: 500;
+            color: #0a5d72;
+            margin-bottom: 0.2rem;
+            font-size: 1.05rem;
+        }
+
+        .faq-item p {
+            font-size: 0.95rem;
+            color: #1f4b59;
+            margin-left: 0.2rem;
+        }
+
+        .faq-item .more-hint {
+            font-size: 0.9rem;
+            color: #198597;
+            margin-top: 0.1rem;
+        }
+
+        /* ---- 底部链接 ---- */
+        .footer-links {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #cfe2eb;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 0.8rem 1.5rem;
+            font-size: 0.95rem;
+            color: #1e5567;
+        }
+
+        .footer-links a {
+            color: #11778b;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.15s;
+        }
+
+        .footer-links a:hover {
+            border-bottom-color: #1b9aad;
+        }
+
+        .footer-note {
+            font-size: 0.85rem;
+            color: #427b8b;
+        }
+
+        /* ---- 响应式调整 ---- */
+        @media (max-width: 540px) {
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .explain-section {
+                padding: 1.5rem 1.2rem;
+            }
+
+            .grid-cards {
+                gap: 1rem;
+            }
+
+            .faq-summary {
+                padding: 1.2rem 1rem;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .hero {
+                padding: 4rem 0 2.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- hero -->
+    <header class="hero">
+        <h1>日常查询 · 对照 · <span>乐鱼</span></h1>
+        <p>一个关注信息对照与延伸阅读的轻量页面，便于随时查阅、对比和梳理思路。内容温和、克制，不设诱导。</p>
+        <span class="tagline">📋 对照式信息聚合</span>
+    </header>
+
+    <!-- 优势区（网格卡片） -->
+    <section class="grid-section">
+        <h2>常见使用场景</h2>
+        <div class="grid-cards">
+            <div class="card">
+                <span class="emoji-icon">🔍</span>
+                <h3>快速对照</h3>
+                <p>条目化呈现，便于横向对比数据、定义或版本差异，减少反复跳转。</p>
+            </div>
+            <div class="card">
+                <span class="emoji-icon">📎</span>
+                <h3>延伸阅读</h3>
+                <p>在基础信息之外提供相关线索与参考方向，辅助深入理解。</p>
+            </div>
+            <div class="card">
+                <span class="emoji-icon">🧩</span>
+                <h3>模块化梳理</h3>
+                <p>将信息拆解为独立卡片或区块，按需组合，提升查阅效率。</p>
+            </div>
+            <div class="card">
+                <span class="emoji-icon">📱</span>
+                <h3>移动端友好</h3>
+                <p>适配手机与平板，字号、间距和触控区域均经过优化。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 说明区：日常对照 & 延伸阅读 -->
+    <div class="explain-section">
+        <div class="explain-block">
+            <h3>📊 对照方向</h3>
+            <p>术语释义、版本变迁、同类条目并排展示。例如在 <a href="https://portalmobile-leyu.com">乐鱼</a> 的信息框架下，可整理不同来源的表述差异，作为查阅参考。</p>
+            <ul>
+                <li>概念对比</li>
+                <li>功能迭代摘要</li>
+                <li>多来源整合</li>
+            </ul>
+        </div>
+        <div class="explain-block">
+            <h3>📖 延伸阅读</h3>
+            <p>围绕核心条目提供背景、关联话题与扩展资料，帮助使用者建立更完整的认知图景。</p>
+            <ul>
+                <li>相关文档与索引</li>
+                <li>常见疑问整理</li>
+                <li>更新与备注</li>
+            </ul>
+        </div>
+        <div class="explain-block">
+            <h3>⚖️ 克制的信息呈现</h3>
+            <p>不夸大、不诱导，力求内容清晰、可验证。页面内所有链接均直接指向目标，不以模糊话术引导点击。</p>
+        </div>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <section class="faq-summary">
+        <h2>❓ 常见疑问摘要</h2>
+        <div class="faq-item">
+            <strong>这个页面主要做什么？</strong>
+            <p>提供一种轻量级的信息对照与延伸阅读环境，适用于日常查询和资料整理。内容保持简洁，不设置强制互动。</p>
+        </div>
+        <div class="faq-item">
+            <strong>信息更新频率如何？</strong>
+            <p>基于使用需求不定期调整结构或补充条目。建议定期浏览以获取最新对照内容。</p>
+            <div class="more-hint">更多 FAQ 可参考页面内相关区块。</div>
+        </div>
+        <div class="faq-item">
+            <strong>链接指向哪里？</strong>
+            <p>包含指向 <a href="https://portalmobile-leyu.com">乐鱼</a> 的链接，用于信息延伸。所有链接均保持直接可访问。</p>
+        </div>
+    </section>
+
+    <!-- 底部链接 -->
+    <footer class="footer-links">
+        <span>🔗 信息参考 · <a href="https://portalmobile-leyu.com">乐鱼</a> · 延伸阅读</span>
+        <span class="footer-note">非商业用途 · 内容仅供对照参考</span>
+    </footer>
+
+</div>
+</body>
+</html>
