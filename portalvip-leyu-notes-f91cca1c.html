@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>乐鱼 · 杂志专题</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f4f8fb;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      color: #234;
+      line-height: 1.6;
+      padding: 0 16px;
+      max-width: 1000px;
+      margin: 0 auto;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* 卡片式网格——杂志感 */
+    .magazine-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin: 32px 0;
+    }
+
+    @media (min-width: 640px) {
+      .magazine-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .magazine-grid .span-full {
+        grid-column: 1 / -1;
+      }
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 28px 24px;
+      box-shadow: 0 8px 20px rgba(0, 40, 60, 0.04), 0 2px 6px rgba(20, 80, 100, 0.06);
+      transition: transform 0.15s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(20, 100, 130, 0.08);
+    }
+
+    /* 蓝绿色点缀 */
+    .accent-border {
+      border-left: 6px solid #1b9f9a;
+      border-image: linear-gradient(180deg, #1b9f9a, #4fc3c0) 1;
+    }
+
+    .accent-soft {
+      background: #e6f3f5;
+    }
+
+    .highlight-teal {
+      color: #117a7a;
+      font-weight: 500;
+    }
+
+    a {
+      color: #117a7a;
+      text-decoration: none;
+      border-bottom: 1.5px dotted #6fc5c1;
+      transition: border-bottom 0.2s, color 0.2s;
+    }
+
+    a:hover {
+      border-bottom-style: solid;
+      color: #0b5e5e;
+    }
+
+    /* hero 横幅——杂志式开篇 */
+    .hero {
+      padding: 48px 0 20px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.6rem;
+      font-weight: 350;
+      letter-spacing: 0.02em;
+      background: linear-gradient(145deg, #1b6b6b, #298f8b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+    }
+
+    .hero .subhead {
+      font-size: 1.1rem;
+      color: #4b6b72;
+      max-width: 480px;
+      margin: 0 auto 16px;
+      font-weight: 320;
+    }
+
+    .hero .meta-note {
+      display: inline-block;
+      font-size: 0.85rem;
+      background: #ecf4f5;
+      color: #3a6b6b;
+      padding: 4px 18px;
+      border-radius: 40px;
+      letter-spacing: 0.3px;
+    }
+
+    /* 背景说明卡——像杂志的引言框 */
+    .intro-background {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 28px 24px;
+      box-shadow: 0 4px 12px rgba(0, 20, 30, 0.03);
+    }
+
+    .background-note {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 10px 6px;
+    }
+
+    .background-note .label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: #7ea7a9;
+      background: #eef6f7;
+      padding: 2px 12px;
+      border-radius: 30px;
+    }
+
+    /* 三段自然介绍——每段一个卡片风格 */
+    .intro-section {
+      margin: 12px 0;
+    }
+
+    .intro-section h3 {
+      font-weight: 400;
+      font-size: 1.4rem;
+      margin-bottom: 12px;
+      color: #1f5050;
+      letter-spacing: -0.01em;
+    }
+
+    .intro-section p {
+      margin-bottom: 14px;
+      color: #2b404a;
+    }
+
+    .intro-section .sign-off {
+      font-style: italic;
+      color: #59888a;
+      font-size: 0.95rem;
+      border-top: 1px solid #d6e7e9;
+      padding-top: 14px;
+      margin-top: 12px;
+    }
+
+    /* FAQ 摘要卡片（极简，杂志侧栏风格） */
+    .faq-mini {
+      background: #fafdfd;
+      border-radius: 24px;
+      padding: 24px;
+      border: 1px solid #daeef0;
+    }
+
+    .faq-mini h4 {
+      font-weight: 450;
+      font-size: 1.1rem;
+      color: #1b7a76;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .faq-item {
+      padding: 10px 0;
+      border-bottom: 1px dashed #d2e6e8;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-q {
+      font-weight: 490;
+      color: #1b4f4f;
+    }
+
+    .faq-a {
+      margin-top: 4px;
+      color: #3b5c63;
+      font-size: 0.95rem;
+    }
+
+    /* 页尾提示 */
+    .page-footer {
+      margin-top: 40px;
+      margin-bottom: 32px;
+      padding-top: 24px;
+      border-top: 1px solid #cee4e6;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #58777b;
+    }
+
+    .page-footer .visit-hint {
+      background: #e3f2f2;
+      display: inline-block;
+      padding: 8px 28px;
+      border-radius: 60px;
+      letter-spacing: 0.4px;
+    }
+
+    .page-footer .small-print {
+      margin-top: 18px;
+      opacity: 0.75;
+      font-size: 0.8rem;
+    }
+
+    .flex-space {
+      flex: 1;
+    }
+
+    /* 保持移动端舒适 */
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .card, .intro-background, .faq-mini {
+        padding: 22px 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Hero 横幅 —— 杂志专题 -->
+<header class="hero">
+  <h1>乐鱼 · 一方水域</h1>
+  <div class="subhead">从站点本身出发，聊聊它的由来与日常面貌</div>
+  <span class="meta-note">记述 · 专题</span>
+</header>
+
+<!-- 背景说明：卡片式引言 -->
+<div class="intro-background accent-border">
+  <div class="background-note">
+    <span class="label">背景</span>
+    <span style="color: #386a6c; font-weight: 400;">一个逐渐成型的网络角落，定位于信息聚合与轻互动。</span>
+  </div>
+  <p style="margin-top: 16px;">
+    大约几年前，<a href="https://portalvip-leyu.com">乐鱼</a> 这个名字开始在少数人的书签里出现。它没有大张旗鼓的宣传，更像是一棵在溪边自己生长的树——依靠使用者的口碑和持续的打磨，慢慢伸展枝叶。  
+    起初它只是一组简单的页面集合，后来逐渐加入了更清晰的内容分类和更稳定的访问体验。对于初次到访的人而言，它或许只是又一个陌生的域名；但对于那些定期回来看看的人，这里已经攒下了一些熟悉的角落。
+  </p>
+</div>
+
+<!-- 三段自然介绍 使用网格卡片 -->
+<div class="magazine-grid">
+  
+  <div class="card">
+    <div class="intro-section">
+      <h3>从一片空白开始</h3>
+      <p>搭建一个对外的站点，最初往往源于某个具体的念头：想把分散的信息放在同一个屋檐下，或者希望有一个不受算法左右的阅读空间。乐鱼 的形成也差不多——没有复杂的商业计划，只是一步步地调整结构、补充内容，让页面逐渐能承载更多人的需要。</p>
+      <p>如今你看到的首页，已经迭代过许多版。每一次改动都不算大，但累积起来，界面和逻辑都和最初有了明显的不同。这种缓慢的变化，反而让站点有了一种踏实的质感。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="intro-section">
+      <h3>可信与日常</h3>
+      <p>在信息繁杂的网络里，一个站点最朴素的信任来源于稳定和透明。乐鱼 没有隐藏的自动跳转，也没有突然变化的界面把戏。它尽量保持简洁的导航，让访问者知道自己在哪，以及能做什么。</p>
+      <p>无论你是通过搜索还是朋友推荐来到这里，都可以把这里当作一个普通的网络据点。它不承诺任何奇迹，只是安静地提供它所能提供的——阅读、参考或是一些轻量的工具。保持可信，比什么都重要。</p>
+      <div class="sign-off">—— 站点维护者手记</div>
+    </div>
+  </div>
+
+  <!-- 第三段：占满一行（网格 span-full）但保持小卡片样式，加一些场景 / 特点 -->
+  <div class="card span-full" style="background: #f6fbfb;">
+    <div class="intro-section">
+      <h3>使用场景与节奏</h3>
+      <p>有人把 <a href="https://portalvip-leyu.com">乐鱼</a> 当作一个安静的信息入口，每周上来浏览一两次；也有人把它视为一个偶尔回来看看的地方，像翻一本没有页码的杂志。这里没有推送通知，也没有积分系统，一切由你自己决定节奏。</p>
+      <p>从内容类型上看，站点涵盖了常见的分类索引、一些专题整理，以及不定期的短篇更新。设计上刻意减少了视觉干扰，让文字和功能成为主角。如果你喜欢不被追踪、不被算法推着走的体验，这里可能会让你觉得放松。</p>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ 摘要 —— 杂志侧栏感，只放两个自然问答，不夸张 -->
+<div class="faq-mini">
+  <h4>📖 常见小问</h4>
+  <div class="faq-item">
+    <div class="faq-q">乐鱼 的名字有什么含义？</div>
+    <div class="faq-a">并没有太复杂的典故。当初需要一个简短、好记的代号，恰好想到了这个词，就一直用下来了。它不代表任何特定概念，只是一个名字。</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">网站内容是否可靠？</div>
+    <div class="faq-a">站点里的信息和链接都经过人工筛选与整理，但网络信息总在变化。建议把这里作为参考起点，重要的事再交叉确认一下。</div>
+  </div>
+  <div style="margin-top: 14px; font-size: 0.9rem; color: #4d7a7a; border-left: 3px solid #7fc7c3; padding-left: 14px;">
+    更多细节可以直接在站内浏览，或者通过页面底部的指引访问主页。
+  </div>
+</div>
+
+<!-- 页尾访问提示 -->
+<footer class="page-footer">
+  <div class="visit-hint">
+    · 若想一探究竟，可前往 <a href="https://portalvip-leyu.com" style="border-bottom: 1.5px solid #3a9490;">乐鱼</a> 主页 ·
+  </div>
+  <div class="small-print">
+    杂志式记录 · 不定期更新 · 没有广告承诺
+  </div>
+  <div style="margin-top: 8px; font-size: 0.75rem; color: #8faeb0;">
+    本文档仅为介绍页示例，具体内容以站点实际为准。
+  </div>
+</footer>
+
+<!-- 让 body 占满高度 -->
+<div class="flex-space"></div>
+
+</body>
+</html>
